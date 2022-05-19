@@ -9,15 +9,20 @@ class Player(pygame.sprite.Sprite):
         self.rect = self.image.get_rect(topleft=pos)
         self.hitbox = self.rect.inflate(0, -26)
 
+        # Movement
         self.direction = pygame.math.Vector2()
         self.speed = 5
+        self.attacking = False
+        self.attack_cooldown = 400
+        self.attack_time = None
 
         self.obstacle_sprites = obstacle_sprites
+
 
     def input(self):
         keys = pygame.key.get_pressed()
 
-        # movement input
+        # Movement input
         if keys[pygame.K_w]:
             self.direction.y = -1
         elif keys[pygame.K_s]:
@@ -31,6 +36,16 @@ class Player(pygame.sprite.Sprite):
             self.direction.x = -1
         else:
             self.direction.x = 0
+
+        # Attack input
+        if keys[pygame.K_SPACE] and not self.attacking:
+            self.attacking = True
+            print("attack")
+
+        # Magic input
+        if keys[pygame.K_LCTRL] and not self.attacking:
+            self.attacking = True
+            print("magic")
 
     def move(self, speed):
         if self.direction.magnitude() != 0:
@@ -57,6 +72,10 @@ class Player(pygame.sprite.Sprite):
                         self.hitbox.bottom = sprite.hitbox.top
                     if self.direction.y < 0: # Moving up
                         self.hitbox.top = sprite.hitbox.bottom
+
+"""LEFT OFF HERE"""
+    def cooldowns(self):
+
 
     def update(self):
         self.input()
