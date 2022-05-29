@@ -22,6 +22,8 @@ class Level:
 
         # Attack sprites
         self.current_attack = None
+        self.attack_sprites = pygame.sprite.Group()
+        self.attackable_sprites = pygame.sprite.Group()
 
         # Sprite setup
         self.create_map()
@@ -73,7 +75,11 @@ class Level:
                                     monster_name = "raccoon"
                                 else:
                                     monster_name = "squid"
-                                Enemy(monster_name, (x, y), [self.visible_sprites], self.obstacle_sprites)
+                                Enemy(
+                                    monster_name,
+                                    (x, y),
+                                    [self.visible_sprites, self.attackable_sprites],
+                                      self.obstacle_sprites)
 
     def create_attack(self):
         self.current_attack = Weapon(self.player, [self.visible_sprites])
