@@ -38,13 +38,3 @@ class MagicPlayer:
                     x = player.rect.centerx + randint(-TILESIZE // 3, TILESIZE // 3)
                     y = player.rect.centery + offset_y + randint(-TILESIZE // 3, TILESIZE // 3)
                     self.animation_player.create_particles("flame", (x, y), groups)
-
-        # if not "idle" and not "attack" in self.status:
-        #     self.animation_player.create_particles("flame", self.status, groups)
-        # else:
-        #     if "idle" in self.status:
-        #         self.status = self.status.replace("_idle", "")
-        #         self.animation_player.create_particles("flame", self.status, groups)
-        #     if "attack" in self.status:
-        #         self.status = self.status.replace("_attack", "")
-        #         self.animation_player.create_particles("flame", self.status, groups)
