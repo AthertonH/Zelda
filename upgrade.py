@@ -11,9 +11,10 @@ class Upgrade:
         self.attribute_names = list(player.stats.keys())
         self.font = pygame.font.Font(UI_FONT, UI_FONT_SIZE)
 
-        # Item dimensions
+        # Item creation
         self.height = self.display_surface.get_size()[1] * 0.8
         self.width = self.display_surface.get_size()[0] // 6
+        self.create_items()
 
         # Selection system
         self.selection_index = 0
@@ -62,6 +63,9 @@ class Upgrade:
     def display(self):
         self.input()
         self.selection_cooldown()
+
+        for item in self.item_list:
+            item.display(self.display_surface, 0, "test", 1, 2, 3)
 
 class Item:
     def __init__(self, l, t , w, h, index, font):
