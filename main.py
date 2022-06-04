@@ -1,3 +1,5 @@
+"test"
+
 import pygame, sys, time
 from settings import *
 from level import Level
